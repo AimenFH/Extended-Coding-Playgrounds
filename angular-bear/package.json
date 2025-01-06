@@ -9,6 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
+    "build": "ng build",
     "prettier": "prettier --write \"./src/**/*.{ts,js,html,scss}\"",
     "prettier:check": "prettier --list-different \"./src/**/*.{ts,js,html,scss}\"",
     "postinstall": "npm run prettier -s",
