@@ -22,9 +22,7 @@ describe('Main functionality', () => {
     `;
 
     showHideBtn = document.querySelector('.show-hide') as HTMLButtonElement;
-    commentWrapper = document.querySelector(
-      '.comment-wrapper'
-    ) as HTMLDivElement;
+    commentWrapper = document.querySelector('.comment-wrapper') as HTMLDivElement;
     form = document.querySelector('.comment-form') as HTMLFormElement;
     nameField = document.querySelector('#name') as HTMLInputElement;
     commentField = document.querySelector('#comment') as HTMLTextAreaElement;
@@ -67,17 +65,11 @@ describe('Main functionality', () => {
     nameField.value = 'John Doe';
     commentField.value = 'This is a comment';
 
-    form.dispatchEvent(
-      new Event('submit', { bubbles: true, cancelable: true })
-    );
+    form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
 
     const listItem = list.querySelector('li');
     expect(listItem).not.toBeNull();
-    expect(listItem?.querySelector('p:nth-child(1)')?.textContent).toBe(
-      'John Doe'
-    );
-    expect(listItem?.querySelector('p:nth-child(2)')?.textContent).toBe(
-      'This is a comment'
-    );
+    expect(listItem?.querySelector('p:nth-child(1)')?.textContent).toBe('John Doe');
+    expect(listItem?.querySelector('p:nth-child(2)')?.textContent).toBe('This is a comment');
   });
 });

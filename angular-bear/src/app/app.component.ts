@@ -3,7 +3,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CommentsComponent } from './comments/comments.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainContentComponent } from '@app/main-content/main-content.component';
-import {HeaderComponent} from "@app/header/header.component";
+import { HeaderComponent } from '@app/header/header.component';
 
 @Component({
   selector: 'app-root',
