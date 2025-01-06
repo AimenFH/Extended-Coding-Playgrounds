@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd angular-bear
-          npm install --force
+          npm install --legacy-peer-deps
 
       - name: Run ESLint with fix
         run: |
