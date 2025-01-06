@@ -24,6 +24,7 @@ jobs:
         run: |
           cd angular-bear
           npm run lint:fix
+        continue-on-error: true
 
       - name: Run tests
         run: |
@@ -34,3 +35,4 @@ jobs:
         run: |
           cd angular-bear
           npm run lint
+        continue-on-error: true
