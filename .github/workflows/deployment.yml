@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    uses: AimenFH/WebEngineering_BaseTemplate/.github/workflows/common-steps.yml@main
+    uses: ./.github/workflows/common-steps.yml
 
   build-and-deploy-steps:
     needs: build-and-deploy
@@ -23,10 +23,14 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: cd angular-extend && npm install
+        run: |
+          cd angular-extend
+          npm install
 
       - name: Build project
-        run: cd angular-extend && npm run build
+        run: |
+          cd angular-extend
+          npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

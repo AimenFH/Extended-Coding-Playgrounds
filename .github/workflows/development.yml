@@ -7,4 +7,4 @@ on:
 
 jobs:
   test-and-lint:
-    uses: AimenFH/WebEngineering_BaseTemplate/.github/workflows/common-steps.yml@main
+uses: ./.github/workflows/common-steps.yml

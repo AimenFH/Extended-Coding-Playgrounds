@@ -16,13 +16,21 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: cd angular-extend && npm install
+        run: |
+          cd angular-extend
+          npm install
 
       - name: Run ESLint with fix
-        run: cd angular-extend && npm run lint:fix
+        run: |
+          cd angular-extend
+          npm run lint:fix
 
       - name: Run tests
-        run: cd angular-extend && npm run test
+        run: |
+          cd angular-extend
+          npm run test
 
       - name: Run linter
-        run: cd angular-extend && npm run lint
+        run: |
+          cd angular-extend
+          npm run lint
