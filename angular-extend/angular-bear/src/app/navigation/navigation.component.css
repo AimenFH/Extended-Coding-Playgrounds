@@ -1,0 +1,47 @@
+/* Navigation */
+nav {
+  background-color: #009688;
+  display: flex;
+  padding: 1% 0;
+  margin-bottom: 10px;
+}
+
+nav ul {
+  flex: 2;
+  display: flex;
+  padding: 0;
+  list-style-type: none;
+}
+
+nav li {
+  flex: 1;
+  text-align: center;
+}
+
+nav a {
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* Search form */
+.search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search input[type="search"] {
+  flex: 3;
+  font-size: 1.6rem;
+  height: 32px;
+}
+
+.search input[type="submit"] {
+  flex: 1;
+  margin-left: 1rem;
+  background: #00796b;
+  border: none;
+  color: #ffffff;
+}

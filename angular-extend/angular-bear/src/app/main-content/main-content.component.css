@@ -1,0 +1,45 @@
+/* Main Layout */
+main {
+  display: flex;
+}
+
+article {
+  flex: 5;
+  padding: 10px 30px;
+  background-color: #00796b;
+}
+
+.secondary {
+  flex: 2;
+  background-color: #00796b;
+  padding: 10px 30px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+}
+
+th {
+  border-bottom: 1px solid #666666;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #e0f2f1;
+}
+
+/* Styling for images and audio */
+img, audio {
+  display: block;
+  margin: 0 auto;
+}
+
+audio {
+  width: 500px;
+}
