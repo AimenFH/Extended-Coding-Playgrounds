@@ -17,20 +17,20 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd angular-extend
+          cd angular-bear
           npm install
 
       - name: Run ESLint with fix
         run: |
-          cd angular-extend
+          cd angular-bear
           npm run lint:fix
 
       - name: Run tests
         run: |
-          cd angular-extend
+          cd angular-bear
           npm run test
 
       - name: Run linter
         run: |
-          cd angular-extend
+          cd angular-bear
           npm run lint
