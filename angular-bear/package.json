@@ -50,7 +50,7 @@
     "@types/node": "^22.5.5",
     "angular-eslint": "19.0.2",
     "class-transformer": "^0.5.1",
-    "eslint": "^9.11.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-jsdoc": "^50.2.4",
