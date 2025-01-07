@@ -1,3 +1,4 @@
+// main-content.component.ts
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -80,18 +81,10 @@ export class MainContentComponent implements OnInit {
   }
 
   async getBearData() {
-    const baseUrl = 'https://en.wikipedia.org/w/api.php';
-    const params = {
-      action: 'parse',
-      page: 'List_of_ursids',
-      prop: 'wikitext',
-      section: '3',
-      format: 'json',
-      origin: '*',
-    };
+    const baseUrl = 'http://localhost:3000/api/bear/List_of_ursids'; // Update to your backend API URL
 
     try {
-      const response = await fetch(`${baseUrl}?${new URLSearchParams(params)}`);
+      const response = await fetch(baseUrl);
       const data = await response.json();
       const wikitext = data.parse.wikitext['*'];
       await this.extractBears(wikitext);
