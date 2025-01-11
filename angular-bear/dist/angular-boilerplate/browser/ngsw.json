@@ -1,0 +1,61 @@
+{
+  "configVersion": 1,
+  "timestamp": 1736627313986,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/index.html",
+        "/main-EYKQCALE.js",
+        "/polyfills-CXF6PVJJ.js"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/media/urban-bear.jpg",
+        "/assets/media/wild-bear.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/media/urban-bear.jpg": "d49095109f546273d61246ee95954311ad6f27bf",
+    "/assets/media/wild-bear.jpg": "4793aef1ac9a5b6075dc064ce20d677a93ff89af",
+    "/index.html": "90d3418fe993b55c47648af9f21b550b8a95900e",
+    "/main-EYKQCALE.js": "f24551e72c87315e1141a7686ada03cc674282b9",
+    "/polyfills-CXF6PVJJ.js": "c6ed624977e3fe2496cfa7f59b4a88bddf78fde3"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
