@@ -41,6 +41,7 @@ jobs:
         run: |
           git config --global user.name 'AimenFH'
           git config --global user.email 'aimen.el-sayed@stud.fh-campuswien.ac.at'
+          git pull --rebase https://x-access-token:${{ secrets.GH_PAT }}@github.com/AimenFH/Extended-Coding-Playgrounds.git main
           git add -f ./angular-bear/dist
           git commit -m 'Deploy to main branch'
           git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/AimenFH/Extended-Coding-Playgrounds.git HEAD:main
