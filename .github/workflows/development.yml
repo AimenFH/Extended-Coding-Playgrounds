@@ -8,3 +8,13 @@ on:
 jobs:
   test-and-lint:
     uses: ./.github/workflows/common-steps.yml
+
+  additional-steps:
+    needs: test-and-lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run tests
+        run: |
+          cd angular-bear
+          npm test
