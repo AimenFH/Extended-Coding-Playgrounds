@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  bear-api:
+    build:
+      context: ./bear-api
+      target: production
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+
+  angular-bear:
+    build:
+      context: ./angular-bear
+      target: production
+    ports:
+      - "80:80"
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - bear-api
