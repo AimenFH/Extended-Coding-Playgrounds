@@ -1,47 +1,20 @@
-# Stage 1: Development
-FROM node:18 AS development
+# Development stage
+FROM node:18-bullseye AS development
 
-WORKDIR /app
+# Set working directory
+WORKDIR /usr/src/app
 
+# Copy package.json and package-lock.json
 COPY package*.json ./
-RUN npm install
 
+# Install all dependencies
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the application code
 COPY . .
 
-# Set environment variables for development
-ARG NODE_ENV=development
-ENV NODE_ENV=${NODE_ENV}
-
+# Expose port for Angular dev server
 EXPOSE 4200
 
+# Start Angular dev server
 CMD ["npm", "start"]
-
-# Stage 2: Build
-FROM node:18 AS build
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-
-# Set environment variables for build
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-RUN npm run build --prod
-
-# Stage 3: Serve with Nginx
-FROM nginx:alpine AS production
-
-COPY --from=build /app/dist/Extended-Coding-Playgrounds /usr/share/nginx/html
-
-# Set environment variables for production
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-EXPOSE 80
-
-# Command to run Nginx
-CMD ["nginx", "-g", "daemon off;"]

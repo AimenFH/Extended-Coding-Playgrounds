@@ -4,19 +4,22 @@ services:
   bear-api:
     build:
       context: ./bear-api
-      target: production
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: production
+      - NODE_ENV=production
 
   angular-bear:
     build:
       context: ./angular-bear
-      target: production
-    ports:
-      - "80:80"
-    environment:
-      NODE_ENV: production
+      dockerfile: Dockerfile
     depends_on:
       - bear-api
+    ports:
+      - "4200:80"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./angular-bear:/usr/src/app
+    command: /bin/sh -c "nginx -g 'daemon off;' -c /usr/src/app/nginx.conf"

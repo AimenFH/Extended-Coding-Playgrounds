@@ -1,5 +1,6 @@
-// server.js
+// bear-api/server.js
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 const NodeCache = require('node-cache');
 
@@ -7,6 +8,9 @@ const app = express();
 const cache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
 const WIKIPEDIA_API_URL = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
+
+// Use the CORS middleware with wildcard
+app.use(cors());
 
 app.get('/api/bear/:name', async (req, res) => {
   const bearName = req.params.name;

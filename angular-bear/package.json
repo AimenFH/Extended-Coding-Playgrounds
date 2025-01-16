@@ -1,5 +1,5 @@
 {
-  "name": "angular-boilerplate",
+  "name": "angular-bear",
   "version": "0.0.0",
   "packageManager": "yarn@1.22.22",
   "scripts": {
@@ -12,8 +12,7 @@
     "build": "ng build",
     "prettier": "prettier --write \"./src/**/*.{ts,js,html,scss}\"",
     "prettier:check": "prettier --list-different \"./src/**/*.{ts,js,html,scss}\"",
-    "postinstall": "npm run prettier -s",
-    "prepare": "husky install"
+    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi"
   },
   "private": true,
   "dependencies": {

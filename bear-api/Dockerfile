@@ -1,23 +1,20 @@
-# Use the official Node.js image as the base image
-FROM node:18
+# Base image for development
+FROM node:18-bullseye AS development
 
-# Set the working directory
+# Set working directory
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copy the rest of the application code
 COPY . .
 
-# If there is a build step, run it
-RUN npm run build
-
-# Expose the port the app runs on
+# Expose port for the API
 EXPOSE 3000
 
-# Command to run the app in development mode
-CMD ["npm", "run", "dev"]
+# Start the development server
+CMD ["npm", "run", "start:dev"]

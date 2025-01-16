@@ -4,19 +4,25 @@ services:
   bear-api:
     build:
       context: ./bear-api
+      dockerfile: Dockerfile
       target: development
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: development
+      - NODE_ENV=development
+    volumes:
+      - ./bear-api:/usr/src/app
 
   angular-bear:
     build:
       context: ./angular-bear
+      dockerfile: Dockerfile
       target: development
+    depends_on:
+      - bear-api
     ports:
       - "4200:4200"
     environment:
-      NODE_ENV: development
-    depends_on:
-      - bear-api
+      - NODE_ENV=development
+    volumes:
+      - ./angular-bear:/usr/src/app

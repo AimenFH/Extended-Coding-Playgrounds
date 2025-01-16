@@ -1,4 +1,3 @@
-// main-content.component.ts
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -12,85 +11,43 @@ export class MainContentComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.getBearData();
+      this.getBearData('Polar_bear'); // Example bear name, replace as needed
     }
   }
 
-  async fetchImageUrl(fileName: string) {
-    const baseUrl = 'https://en.wikipedia.org/w/api.php';
-    const params = {
-      action: 'query',
-      titles: `File:${fileName}`,
-      prop: 'imageinfo',
-      iiprop: 'url',
-      format: 'json',
-      origin: '*',
-    };
-
-    try {
-      const response = await fetch(`${baseUrl}?${new URLSearchParams(params)}`);
-      const data = await response.json();
-      const pages = data.query.pages;
-      const imageInfo = (Object.values(pages)[0] as any)?.imageinfo?.[0]?.url;
-
-      return imageInfo && imageInfo.startsWith('http') ? imageInfo : 'placeholder-image-url.jpg';
-    } catch (error) {
-      console.error('Failed to fetch image URL:', error);
-      return 'placeholder-image-url.jpg';
-    }
-  }
-
-  async extractBears(wikitext: string) {
-    const speciesTables = wikitext.split('{{Species table/end}}');
-    const bears = [];
-
-    for (const table of speciesTables) {
-      const rows = table.split('{{Species table/row');
-      for (const row of rows) {
-        const nameMatch = row.match(/\|name=\[\[(.*?)\]\]/);
-        const binomialMatch = row.match(/\|binomial=(.*?)\n/);
-        const imageMatch = row.match(/\|image=(.*?)\n/);
-        const rangeMatch = row.match(/\|range=(.*?)\n/);
-
-        if (nameMatch && binomialMatch && imageMatch) {
-          const fileName = imageMatch[1].trim().replace('File:', '');
-          const imageUrl = await this.fetchImageUrl(fileName);
-
-          bears.push({
-            name: nameMatch[1],
-            binomial: binomialMatch[1],
-            image: imageUrl,
-            range: rangeMatch ? rangeMatch[1].replace(/\[\[|\]\]/g, '') : 'Range data not available',
-          });
-        }
-      }
-    }
-
-    const moreBearsSection = document.querySelector('.more_bears');
-    if (moreBearsSection) {
-      bears.forEach((bear) => {
-        const bearElement = document.createElement('div');
-        bearElement.innerHTML = `
-          <h3>${bear.name} (${bear.binomial})</h3>
-          <img src="${bear.image}" alt="${bear.name}" style="width:200px; height:auto;">
-          <p><strong>Range:</strong> ${bear.range}</p>
-        `;
-        moreBearsSection.appendChild(bearElement);
-      });
-    }
-  }
-
-  async getBearData() {
-    const baseUrl = 'http://localhost:3000/api/bear/List_of_ursids'; // Update to your backend API URL
+  async getBearData(bearName: string) {
+    const baseUrl = `http://localhost:3000/api/bear/${bearName}`;
 
     try {
       const response = await fetch(baseUrl);
+
+      if (!response.ok) {
+        console.error(`API Error: ${response.status} - ${response.statusText}`);
+        // Handle the error in the UI if needed
+        return;
+      }
+
       const data = await response.json();
-      const wikitext = data.parse.wikitext['*'];
-      await this.extractBears(wikitext);
+      console.log('Bear Data:', data);
+
+      // Render the bear information
+      this.renderBear(data);
     } catch (error) {
       console.error('Failed to fetch bear data:', error);
-      alert('Failed to load bear data. Please try again later.');
+    }
+  }
+
+  renderBear(bear: any) {
+    const moreBearsSection = document.querySelector('.more_bears');
+
+    if (moreBearsSection) {
+      const bearElement = document.createElement('div');
+      bearElement.innerHTML = `
+        <h3>${bear.title}</h3>
+        <img src="${bear.thumbnail?.source || 'placeholder-image-url.jpg'}" alt="${bear.title}" style="width:200px; height:auto;">
+        <p><strong>Description:</strong> ${bear.extract}</p>
+      `;
+      moreBearsSection.appendChild(bearElement);
     }
   }
 }
